@@ -15,7 +15,7 @@ int main() {
             return;
         }
 //      printf(message)
-        bot.getApi().copyMessage(message->chat->id, message->chat->id, message->id);
+        bot.getApi().copyMessage(message->chat->id, message->chat->id, message->message_id);
     });
     try {
         printf("Bot username: %s\n", bot.getApi().getMe()->username.c_str());
