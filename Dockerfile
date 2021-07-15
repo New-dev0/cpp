@@ -1,6 +1,6 @@
 FROM reo7sp/tgbot-cpp
 
-RUN apt-get install git
+RUN apt-get install git -y
 
 RUN git clone https://github.com/reo7sp/tgbot-cpp.git
 COPY . .
