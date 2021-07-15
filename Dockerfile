@@ -9,4 +9,4 @@ COPY . .
 RUN cd tgbot-cpp && cmake .
 RUN g++ main.cpp -o telegram_bot --std=c++14 -I/usr/local/include -lTgBot -lboost_system -lssl -lcrypto -lpthread
 
-CMD ./a.out
+CMD ./telegram_bot
