@@ -3,6 +3,7 @@ FROM python:3.9-slim-buster
 RUN echo deb http://http.us.debian.org/debian/ testing non-free contrib main > /etc/apt/sources.list && \
     apt -qq update
 RUN apt -qq install -y --no-install-recommends \
+    cmake \
     curl \
     git \
     gcc \
