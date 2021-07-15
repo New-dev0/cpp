@@ -1,0 +1,3 @@
+telethon
+cryptg
+https://github.com/New-dev0/tgcalls/archive/test.zip
