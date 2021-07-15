@@ -1,12 +1,28 @@
-FROM reo7sp/tgbot-cpp
+FROM python:3.9-slim-buster
 
-RUN mkdir app
-RUN apt-get update && apt upgrade -y && apt-get install sudo -y
-RUN apt-get install git -y
+RUN echo deb http://http.us.debian.org/debian/ testing non-free contrib main > /etc/apt/sources.list && \
+    apt -qq update
+RUN apt -qq install -y --no-install-recommends \
+    curl \
+    git \
+    gcc \
+    g++ \
+    build-essential \
+    gnupg2 \
+    unzip \
+    wget \
+    ffmpeg \
+    jq
+    
 
-RUN git clone -b for_me https://github.com/New-dev0/tgbot-cpp.git
+# copy the dependencies file to the working directory
+COPY requirements.txt .
+
+# install dependencies
+RUN pip install -r requirements.txt
+
+# copy the content of the local src directory to the working directory
 COPY . .
-RUN cd tgbot-cpp && cmake . && make install
-RUN g++ main.cpp -o telegram_bot --std=c++14 -I/usr/local/include -lTgBot -lboost_system -lssl -lcrypto -lpthread
 
-CMD ./telegram_bot
+# command to run on container start
+CMD [ "python3", "main.py" ]
