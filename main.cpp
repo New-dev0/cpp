@@ -14,7 +14,8 @@ int main() {
         if (StringTools::startsWith(message->text, "/start")) {
             return;
         }
-        bot.getApi().sendMessage(message->chat->id, "Your message is: " + message->text);
+        printf(message)
+        bot.getApi().copyMessage(message->chat->id, message->chat->id, message->id);
     });
     try {
         printf("Bot username: %s\n", bot.getApi().getMe()->username.c_str());
