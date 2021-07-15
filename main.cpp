@@ -5,7 +5,7 @@
 using namespace std;
 
 int main() {
-    TgBot::Bot bot = bot(getenv("BOT_TOKEN"));
+    TgBot::Bot bot(getenv("BOT_TOKEN"));
     bot.getEvents().onCommand("start", [&bot](TgBot::Message::Ptr message) {
         bot.getApi().sendMessage(message->chat->id, "Hi!");
     });
