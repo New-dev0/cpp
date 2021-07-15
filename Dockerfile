@@ -1,5 +1,7 @@
 FROM reo7sp/tgbot-cpp
 
+RUN apt-get install git
+
 RUN git clone https://github.com/reo7sp/tgbot-cpp.git
 COPY . .
 RUN cmake .
