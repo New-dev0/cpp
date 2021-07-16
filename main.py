@@ -1,7 +1,7 @@
 import os
 import logging
 logging.basicConfig(level=logging.INFO)
-from telethon import TelegramClient as Client
+from telethon import TelegramClient as Client, events
 from pytgcalls import GroupCallFactory
 from telethon.sessions import StringSession as SS
 
