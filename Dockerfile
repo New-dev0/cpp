@@ -1,29 +1,22 @@
-FROM python:3.9-slim-buster
+# Ultroid - UserBot
+# Copyright (C) 2021 TeamUltroid
+# This file is a part of < https://github.com/TeamUltroid/Ultroid/ >
+# PLease read the GNU Affero General Public License in <https://www.github.com/TeamUltroid/Ultroid/blob/main/LICENSE/>.
 
-RUN echo deb http://http.us.debian.org/debian/ testing non-free contrib main > /etc/apt/sources.list && \
-    apt -qq update
-RUN apt -qq install -y --no-install-recommends \
-    cmake \
-    curl \
-    git \
-    gcc \
-    g++ \
-    build-essential \
-    gnupg2 \
-    unzip \
-    wget \
-    ffmpeg \
-    jq
-    
+FROM programmingerror/ultroid:b0.1
 
-# copy the dependencies file to the working directory
-COPY requirements.txt .
+ENV TZ=Asia/Kolkata
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
-# install dependencies
-RUN pip install -r requirements.txt
+RUN apt install jq netcat -y
+RUN apt autoremove
 
-# copy the content of the local src directory to the working directory
 COPY . .
+WORKDIR /root/TeamUltroid/
 
-# command to run on container start
-CMD [ "python3", "main.py" ]
+# RUN pip uninstall search-engine-parser -y
+
+RUN pip3 install --no-cache-dir -r requirements.txt
+# RUN pip3 uninstall py-tgcalls -y
+RUN pip3 install -U git+https://github.com/New-dev0/tgcalls@test#subdirectory=pytgcalls
+CMD python3 main.py
