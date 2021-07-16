@@ -12,11 +12,7 @@ RUN apt install jq netcat -y
 RUN apt autoremove
 
 COPY . .
-WORKDIR /root/TeamUltroid/
-
-# RUN pip uninstall search-engine-parser -y
 
 RUN pip3 install --no-cache-dir -r requirements.txt
-# RUN pip3 uninstall py-tgcalls -y
 RUN pip3 install -U git+https://github.com/New-dev0/tgcalls@test#subdirectory=pytgcalls
 CMD python3 main.py
