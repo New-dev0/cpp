@@ -13,4 +13,11 @@ telethon_gcf = GroupCallFactory(
         Client, GroupCallFactory.MTPROTO_CLIENT_TYPE.TELETHON, enable_logs_to_console=False
 )
 
-print(telethon_gcf.get_file_group_call('input.raw'))
+@Client.on(events.NewMessage(outgoing=True,pattern="^.join$"))
+async def doit(e):
+    ch = telethon_gcf.get_file_group_call('input.raw')
+    await ch.start(e.chat_id)
+
+
+with Client:
+    Client.run_until_disconnected()
