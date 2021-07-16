@@ -14,5 +14,5 @@ RUN apt autoremove
 COPY . .
 
 RUN pip3 install --no-cache-dir -r requirements.txt
-RUN pip3 install -U git+https://github.com/New-dev0/tgcalls@test#subdirectory=pytgcalls
+RUN pip3 install -U git+https://github.com/MarshalX/tgcalls@add-custom-mtproto-clients-support#subdirectory=pytgcalls
 CMD python3 main.py
